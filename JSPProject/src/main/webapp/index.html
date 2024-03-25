@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSP Project</title>
+</head>
+<body>
+    <h1>로그인 테스트</h1>
+
+    <pre>
+        입력된 ID/PW 가 user01/pass01 이면 "로그인 성공"
+        아니면 "아이디 또는 비밀번호가 일치하지 않습니다" 출력 
+    </pre>
+
+    <form action="/login" method="post">
+        ID : <input type="text"name="id">
+        PW : <input type="password"name="pw">
+        <button>LOGIN</button>
+    </form>
+    
+    <hr>
+    <h1>a 태그 클릭 시 화면 전환하기</h1>
+    
+    <h3 style ="color : red;">a태그, js(location) 코드 요청은 모두 GET 방식</h3>
+	<a href="/test/result">페이지 이동</a>
+	
+	<hr>
+	
+	<h1>피자 주문하기</h1>
+	
+	<form action="/pizzaOrder"method="post">
+		
+		피자 : 
+		<select name="pizza">
+			<option value="1">치즈 피자(8000)</option>
+			<option value="2">페페로니 피자(9000)</option>
+			<option value="3">콤비네이션 피자(10000)</option>			
+		</select>
+		
+		<br><br>
+		
+		사이즈<br>
+		<label>
+			R <input type="radio" name="size" value="R">
+		</label>
+		<label>
+			L <input type="radio" name="size" value="L">
+		</label>
+		
+		<br><br>
+		
+		수량 : 
+		<button id="minus" type="button">-</button>
+		<span id="amount">0</span> <!-- span 태그에 만들어진 숫자는 화면에만 보일 뿐 서버로 넘길 수 없음 -->
+		<button id="plus" type="button">+</button>
+		
+		<input type="hidden" name="amount" value="0">
+		<!-- input 태그를 hidden 타입으로 화면에 보이지 않게 만들어두고
+			 span에 작성되는 값을 이 input 태그의 value에 세팅하여 
+			 서버로 제출 시 amount=value값 이런식으로 넘김
+			 
+		 -->
+		<br><br>
+		<button>주문하기</button>
+	</form>
+	
+	<script>
+		const plus = document.getElementById("plus");	       
+        const minus = document.getElementById("minus");
+        const amount = document.getElementById("amount");
+        const input = document.querySelector("[name='amount']");
+
+        // plus 버튼 클릭 시 amount, input 1증가
+        plus.addEventListener("click",() => {
+            amount.innerText++;
+            input.value = amount.innerText;
+        });
+        
+         // plus 버튼 클릭 시 amount, input 1감소
+        minus.addEventListener("click",()=>{
+           if(amount.innerText == 0) return;
+
+           amount.innerText--;
+           input.value = amount.innerText;
+        });
+    </script>
+</body>
+</html>
