@@ -9,4 +9,34 @@
 		WHERE MEMBER_NO = ?
 		AND TODO_DEL_FL ='N'
 	</entry>
+	
+	<entry key="insert">
+		INSERT INTO "TODO"
+		VALUES(SEQ_TODO_NO.NEXTVAL, ?, ?
+		, DEFAULT, DEFAULT, ?)
+	</entry>
+	
+	<entry key = "delete">
+		UPDATE "TODO"
+		SET TODO_DEL_FL = 'Y'
+		WHERE TODO_NO =?
+	</entry>
+	
+	<entry key ="selectOne">
+		SELECT TODO_NO, TODO_TITLE,TODO_MEMO,TODO_DATE  
+		FROM TODO
+		WHERE MEMBER_NO =?
+		AND TODO_DEL_FL = 'N'
+		AND TODO_NO =?
+	</entry>
+	
+	
+	<entry key = "update">
+		UPDATE "TODO"
+		SET TODO_TITLE = ?,
+		TODO_MEMO = ? 
+		WHERE TODO_NO = ?
+		AND MEMBER_NO = ?
+	</entry>
+	
 </properties>
